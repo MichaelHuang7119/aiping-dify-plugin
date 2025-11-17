@@ -37,26 +37,34 @@ class AipingLargeLanguageModel(OAICompatLargeLanguageModel):
             LLMResult 或 Generator
         """
 
-        # 处理 extra_body 和 stream_options
-        if "extra_body" in model_parameters and isinstance(
-            model_parameters["extra_body"], str
-        ):
-            try:
-                model_parameters["extra_body"] = json.loads(
-                    model_parameters["extra_body"]
-                )
-            except json.JSONDecodeError:
-                pass  # 保持原样或抛出错误
-
-        if "stream_options" in model_parameters and isinstance(
-            model_parameters["stream_options"], str
-        ):
-            try:
-                model_parameters["stream_options"] = json.loads(
-                    model_parameters["stream_options"]
-                )
-            except json.JSONDecodeError:
-                pass
+        # 构建 extra_body，整合 enable_thinking 和 sort 字段
+        extra_body = {}
+        
+        # 处理 enable_thinking 字段
+        if "enable_thinking" in model_parameters:
+            extra_body["enable_thinking"] = model_parameters.pop("enable_thinking")
+        
+        # 处理 sort 字段
+        if "sort" in model_parameters:
+            sort_value = model_parameters.pop("sort")
+            if sort_value and sort_value != "none":
+                extra_body["provider"] = {
+                    "only": [],
+                    "order": [],
+                    "sort": sort_value,
+                    "input_price_range": [],
+                    "output_price_range": [],
+                    "throughput_range": [],
+                    "latency_range": [],
+                    "input_length_range": [],
+                    "allow_filter_prompt_length": True,
+                    "ignore": [],
+                    "allow_fallbacks": True
+                }
+        
+        # 如果 extra_body 不为空，添加到 model_parameters
+        if extra_body:
+            model_parameters["extra_body"] = extra_body
 
         self._add_custom_parameters(credentials)
         return super()._invoke(

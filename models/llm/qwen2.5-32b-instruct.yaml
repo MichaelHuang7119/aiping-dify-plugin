@@ -40,20 +40,8 @@ parameter_rules:
   default: false
   required: false
   help:
-    en_US: Whether to stream the response. If true, the response will be streamed
-      back as it is generated.
+    en_US: Whether to stream the response. If true, the response will be streamed back as it is generated.
     zh_Hans: 是否流式返回响应。如果为 true，响应将在生成时流式返回。
-- name: stream_options
-  label:
-    en_US: Stream Options
-    zh_Hans: 流式选项
-  type: text
-  required: false
-  default: '{"include_usage": true}'
-  help:
-    en_US: 'If provided, this will override the above settings. Example: {"include_usage":
-      true}'
-    zh_Hans: '如果提供，将覆盖上述设置。示例：{"include_usage": true}'
 - name: modalities
   label:
     en_US: Modalities
@@ -63,8 +51,7 @@ parameter_rules:
   options:
   - text
   help:
-    en_US: The type of output the model should generate. Most models can generate
-      text, text is the default type
+    en_US: The type of output the model should generate. Most models can generate text, text is the default type
     zh_Hans: 希望模型生成的输出类型。大多数模型都可以生成文本，文本是默认类型
 - name: response_format
   use_template: response_format
@@ -72,23 +59,30 @@ parameter_rules:
   options:
   - text
   - json_object
-- name: extra_body
+- name: enable_thinking
   label:
-    en_US: Extra Body
-    zh_Hans: 额外请求体
-  type: text
+    en_US: Enable Thinking
+    zh_Hans: 启用思考模式
+  type: boolean
+  default: true
   required: false
-  default: '{"provider": {"only": [], "order": [], "sort": ["throughput"], "input_price_range":
-    [], "output_price_range": [], "throughput_range": [], "latency_range": [], "input_length_range":
-    [], "allow_filter_prompt_length": true, "ignore": [], "allow_fallbacks": true},
-    "enable_thinking": true}'
   help:
-    en_US: 'Routing and policy control etc. extended fields. If provided, this will
-      override the above settings. Example: {"provider": {"only": [], "order": [],
-      "sort": ["throughput"], "input_price_range": [], "output_price_range": [], "throughput_range":
-      [], "latency_range": [], "input_length_range": [], "allow_filter_prompt_length":
-      true, "ignore": [], "allow_fallbacks": true}, "enable_thinking": true}'
-    zh_Hans: '路由与策略控制等扩展字段。如果提供，将覆盖上述设置。示例：{"provider": {"only": [], "order": [],
-      "sort": ["throughput"], "input_price_range": [], "output_price_range": [], "throughput_range":
-      [], "latency_range": [], "input_length_range": [], "allow_filter_prompt_length":
-      true, "ignore": [], "allow_fallbacks": true}, "enable_thinking": true}'
+    en_US: Whether to enable thinking mode for models that support it
+    zh_Hans: 是否为支持思考模式的模型启用思考功能（部分模型可能不支持思考）
+- name: sort
+  label:
+    en_US: Sort By
+    zh_Hans: 智能路由策略
+  type: string
+  default: none
+  required: false
+  options:
+  - input_price
+  - output_price
+  - latency
+  - throughput
+  - input_length
+  - none
+  help:
+    en_US: 'Sort providers by: input_price, output_price, throughput, latency, or context_length'
+    zh_Hans: 按以下方式排序供应商：input_price（输入价格）、output_price（输出价格）、throughput（吞吐量）、latency（延迟）或 context_length（上下文长度）
