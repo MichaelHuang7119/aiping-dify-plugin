@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 type: plugin
 author: aiping
 name: aiping
@@ -38,7 +38,7 @@ plugins:
   models:
     - provider/aiping.yaml
 meta:
-  version: 0.0.1
+  version: 0.0.2
   arch:
     - amd64
     - arm64
