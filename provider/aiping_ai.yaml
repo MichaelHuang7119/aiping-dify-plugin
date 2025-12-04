@@ -51,11 +51,11 @@ help:
     en_US: Get your API Key from AIPing
     zh_Hans: 从 AIPing 获取 API Key
   url:
-    en_US: https://aiping.cn/docs/api-docs
+    en_US: https://aiping.cn/user/apikey
 extra:
   python:
     model_sources:
     - models/llm/llm.py
     - models/embedding/embedding.py
     - models/reranker/reranker.py
-    provider_source: provider/aiping.py
+    provider_source: provider/aiping_ai.py

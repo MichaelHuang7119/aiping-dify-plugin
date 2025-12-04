@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 type: plugin
 author: aiping
 name: aiping
@@ -36,9 +36,11 @@ resource:
       size: 1048576
 plugins:
   models:
-    - provider/aiping.yaml
+    - provider/aiping_ai.yaml
+  tools:
+    - provider/aiping_tools.yaml
 meta:
-  version: 0.0.2
+  version: 0.0.3
   arch:
     - amd64
     - arm64
