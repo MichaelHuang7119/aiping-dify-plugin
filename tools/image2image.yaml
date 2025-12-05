@@ -57,13 +57,21 @@ parameters:
   name: model
   options:
   - label:
+      en_US: Doubao-Seedream-4.0
+      zh_CN: Doubao-Seedream-4.0
+    value: "Doubao-Seedream-4.0"
+  - label:
       en_US: Qwen-Image-Edit
       zh_CN: Qwen-Image-Edit
     value: "Qwen-Image-Edit"
   - label:
-      en_US: Doubao-Seedream-4.0
-      zh_CN: Doubao-Seedream-4.0
-    value: "Doubao-Seedream-4.0"
+      en_US: Qwen-Image-Edit-Plus
+      zh_CN: Qwen-Image-Edit-Plus
+    value: "Qwen-Image-Edit-Plus"
+  - label:
+      en_US: Wan2.5-I2I-Preview
+      zh_CN: Wan2.5-I2I-Preview
+    value: "Wan2.5-I2I-Preview"
   required: true
   type: select
   default: "Qwen-Image-Edit"

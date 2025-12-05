@@ -36,7 +36,6 @@ identity:
   name: aiping
   tags:
   - image
-  - videos
 tools:
 - tools/text2image.yaml
 - tools/image2image.yaml
