@@ -122,7 +122,7 @@ class Image2ImageTool(Tool):
                 encoded_image, encoding_debug = self._encode_image(file_content)
                 yield self.create_text_message(encoding_debug)
                 
-                # 构建图片URL (豆包API需要可访问的URL或base64数据)
+                # 构建图片URL (AIPing API需要可访问的URL或base64数据)
                 image_data_url = f"data:image/png;base64,{encoded_image}"
             except Exception as e:
                 yield self.create_text_message(f"图片编码失败: {str(e)}")

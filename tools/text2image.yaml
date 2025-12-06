@@ -78,7 +78,7 @@ parameters:
       zh_CN: Wan2.5-T2I-Preview
     value: "Wan2.5-T2I-Preview"
   required: true
-  type: string
+  type: select
   default: "Qwen-Image"
 - form: schema
   human_description:

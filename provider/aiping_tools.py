@@ -6,7 +6,7 @@ from tools.text2image import Text2ImageTool
 from dify_plugin import ToolProvider
 
 
-class DoubaoProvider(ToolProvider):
+class AipingProvider(ToolProvider):
     def _validate_credentials(self, credentials: dict[str, Any]) -> None:
         try:
             # Create a simple test prompt for validation

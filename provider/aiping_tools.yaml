@@ -27,8 +27,8 @@ extra:
 identity:
   author: aiping
   description:
-    en_US: API integration for AI image and video generation by AIPing.
-    zh_CN: AIPing 提供的 API，用于 AI 图像和视频生成。
+    en_US: API integration for AI image generation by AIPing.
+    zh_CN: AIPing 提供的 API，用于 AI 图像生成。
   icon: icon.svg
   label:
     en_US: AIPing
