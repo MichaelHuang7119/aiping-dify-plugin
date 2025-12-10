@@ -62,7 +62,7 @@ mv ./aiping-dify-plugin.difypkg aiping-dify-plugin-ai.difypkg
 
 **配置说明：**
 
-在 `./aiping-dify-plugin/manifest.yaml` 中的 `plugins` 字段中只保留 `tools` 部分：
+在 `./aiping-dify-plugin/manifest.yaml` 中的 `plugins` 字段中只保留 `tools` 部分，以及需要将 name 改成 aiping_tools：
 
 ![](./_assets/package_tools.png)
 
