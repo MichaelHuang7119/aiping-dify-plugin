@@ -23,7 +23,7 @@ class Text2ImageTool(Tool):
 
         api_key = self.runtime.credentials.get("api_key")
 
-        url_router = "/image/generate"
+        url_router = "/images/generations"
 
         model = tool_parameters.get("model", "Qwen-Image")
 
@@ -62,33 +62,14 @@ class Text2ImageTool(Tool):
             if response.status_code != 200:
                 yield self.create_text_message(f"生成图像时出错: {str(result)}")
 
-            # qwen
-            try:
-                images = result.get("output", {}).get("choices", [{}])[0].get(
-                    "message", {}
-                ).get("content") or result.get("output", {}).get("results")
-            except:
-                images = None
-
-            # qianfan
-            images = images or result.get("data")
-
-            # ppio, siliconflow
-            images = images or result.get("images") or result.get("binary_data_base64")
-
-            # extra images
-            # 备注：这里的都是http/https形式的图片url
-            images = [
-                (
-                    image.get("image") or image.get("url") or image.get("image_url")
-                    if isinstance(image, dict)
-                    else image
-                )
-                for image in images
-            ]
+            images = result.get("data")
+            if not images:
+                yield self.create_text_message(f"生成图像时出错: 图像列表为{images}")
 
             # 处理结果
             for image in images:
+                image = image.get("url")
+
                 if not isinstance(image, str):
                     yield self.create_text_message(
                         f"生成图像时出错: 图片类型不是string {image}"
